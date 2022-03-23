@@ -43,11 +43,33 @@ import { Admin, Resource, ListGuesser,EditGuesser  } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { UserList } from './user';
 // import dataProvider from './dataProvider';
-const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+import blue from '@material-ui/core/colors/blue';
+import { purple } from '@material-ui/core/colors';
 // const App = () => <Admin dataProvider={dataProvider} />;
+import { createTheme } from '@material-ui/core/styles';
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+const theme = createTheme({
+  palette: 
+  {
+    primary: {
+      // Purple and green play nicely together.
+      main: purple[500],
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+    // // primary: 'blue',
+
+    // type: 'dark',
+    //  // Switching the dark mode on is a single property value change.
+    //  primary:blue,
+  },
+});
 
 const App = () => (
-  <Admin dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
+
+  <Admin theme={theme} dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
       <Resource name="users" list={UserList} icon={UserIcon}/>
       <Resource name="posts" list={PostList} icon={PostIcon} edit={PostEdit} create={PostCreate}/>
 
